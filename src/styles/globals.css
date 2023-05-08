@@ -17,11 +17,19 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  color: white;
+  background-color: black;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.brackground {
+  background-image: linear-gradient(
       to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgba(0, 0, 0, 0.42),
+      rgba(0, 0, 0, 0.8)
+    ),
+    url('../../public/static/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 1;
 }
