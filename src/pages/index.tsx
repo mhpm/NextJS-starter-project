@@ -1,10 +1,24 @@
-import { Inter } from 'next/font/google';
-import Banner from '../components/banner/banner';
-import ListImages from '@/components/list-images/ListImages';
+import { Banner } from '@/components';
+import ListStoreContainer from '@/containers/liststore-container/ListStoreContainer';
 
-const inter = Inter({ subsets: ['latin'] });
+// https://jsonplaceholder.typicode.com/photos
+import source from '../../data/data.json';
 
-export default function Home() {
+// can only be exported from a page file
+// only runs on server side rendering
+export async function getStaticProps(context: any) {
+  // fetching data here
+  console.log('server side');
+
+  return {
+    props: {
+      source,
+    }, // will be passed to the page component as props
+  };
+}
+
+//client side code
+export default function Home(props: any) {
   return (
     <>
       <main>
@@ -12,7 +26,7 @@ export default function Home() {
           <Banner />
           <div className='w-full xl:w-2/3 mt-20'>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5'>
-              <ListImages />
+              <ListStoreContainer data={props.source} />
             </div>
           </div>
         </div>

@@ -29,7 +29,9 @@ body {
       rgba(0, 0, 0, 0.8)
     ),
     url('../../public/static/background.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
   opacity: 1;
+}
+
+.bg-primary {
+  @apply bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-500;
 }

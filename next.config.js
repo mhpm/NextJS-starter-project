@@ -5,12 +5,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'picsum.photos',
+        hostname: 'via.placeholder',
         port: '',
         pathname: '',
       },
     ],
-    domains: ['picsum.photos'],
+    domains: ['via.placeholder.com'],
   },
 };
 

@@ -18,7 +18,7 @@ function Banner() {
         </h3>
         <button
           onClick={handleClickBanner}
-          className='p-4 bg-amber-500 hover:bg-amber-400 text-ameber-400 rounded font-bold'>
+          className='p-4 bg-primary rounded font-bold'>
           Give me a Taste!
         </button>
       </div>

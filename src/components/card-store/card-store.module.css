@@ -1,0 +1,3 @@
+.card {
+  @apply relative ease-in hover:rotate-6 duration-300 hover:brightness-125 bg-amber-900 text-center rounded cursor-pointer border-4 hover:bg-amber-700;
+}
