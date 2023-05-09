@@ -1,6 +1,5 @@
-import React from 'react';
-import { IStore } from '@/interfaces';
-import { CardStore } from '@/components';
+import { IStore } from '@/src/interfaces';
+import { CardStore } from '@/src/components';
 
 export default function ListStoreContainer({ data }: { data: IStore[] }) {
   return (
@@ -10,8 +9,9 @@ export default function ListStoreContainer({ data }: { data: IStore[] }) {
           key={store.id}
           id={store.id}
           title={store.title}
-          url={store.url}
-          thumbnailUrl={store.thumbnailUrl}
+          image={store.image}
+          description={store.description}
+          color={store.color}
         />
       ))}
     </>

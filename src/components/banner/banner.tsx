@@ -11,7 +11,9 @@ function Banner() {
   return (
     <div className='flex justify-between gap-10 relative'>
       <div>
-        <h1 className='text-5xl mb-4 font-bold'>Best Coffee in Pitt!</h1>
+        <h1 className='text-5xl mb-4 font-bold'>
+          Best Coffee in <span className='text-primary'>Pitt!</span>
+        </h1>
         <h2 className='text-3xl mb-4'>Traditional Taste from home</h2>
         <h3 className='text-xl mb-4'>
           List of best coffe-shops in pittsburght
