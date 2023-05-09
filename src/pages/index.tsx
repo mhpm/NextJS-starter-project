@@ -1,8 +1,8 @@
-import { Banner } from '@/components';
-import ListStoreContainer from '@/containers/liststore-container/ListStoreContainer';
+import { Banner } from '@/src/components';
+import { ListStoreContainer } from '@/src/containers';
 
 // https://jsonplaceholder.typicode.com/photos
-import source from '../../data/data.json';
+import source from '@/data/data.json';
 
 // can only be exported from a page file
 // only runs on server side rendering

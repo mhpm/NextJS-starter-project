@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import boy from '/public/static/boy1.png';
+import mug from '/public/static/mug.png';
 
 function Banner() {
   const handleClickBanner = () => {
@@ -23,8 +23,8 @@ function Banner() {
         </button>
       </div>
       <Image
-        alt='boy'
-        src={boy}
+        alt='mug'
+        src={mug}
         width={200}
         height={400}
         className='object-scale-down'></Image>

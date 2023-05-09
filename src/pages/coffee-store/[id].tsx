@@ -1,33 +1,41 @@
 import { useRouter } from 'next/router';
-import React, { use, useEffect, useState } from 'react';
+import { IStore } from '@/src/interfaces';
+import Image from 'next/image';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import coffeeStoreData from '@/data/data.json';
 
-type ICoffee = {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
+export const getStaticProps: GetStaticProps = (staticProps: any) => {
+  const params = staticProps.params;
+  return {
+    props: {
+      coffeeStore: coffeeStoreData.find((store) => store.id == params.id),
+    },
+  };
 };
 
-const CoffeeStore = () => {
-  const [coffee, setCoffee] = useState<ICoffee>();
+export const getStaticPaths: GetStaticPaths = () => {
+  return {
+    paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
+    fallback: false,
+  };
+};
+
+const CoffeeStore = ({ coffeeStore }: { coffeeStore: IStore }) => {
   const router = useRouter();
-  const { id } = router.query;
 
-  useEffect(() => {
-    const getData = async () => {
-      const data = await fetch('https://api.sampleapis.com/coffee/hot');
-      const json: ICoffee[] = await data.json();
-
-      setCoffee(json.find((coffee) => coffee.id.toString() === id));
-    };
-
-    getData();
-  }, []);
+  const { id, title, url, thumbnailUrl } = coffeeStore;
 
   return (
     <div className='w-fill p-10 text-center font-bold'>
-      <h1 className='text-xl mb-3'>CoffeStore: {coffee?.title}</h1>
-      <p>{coffee?.description}</p>
+      <h1 className='text-xl mb-3'>CoffeStore: {title}</h1>
+      <div>
+        <Image src={url} width={400} height={400} alt='image' />
+      </div>
+      <button
+        className='bg-primary rounded-full p-3 px-10'
+        onClick={() => router.back()}>
+        Back
+      </button>
     </div>
   );
 };
