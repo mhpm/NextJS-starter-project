@@ -2,10 +2,14 @@ import React from 'react';
 import Image from 'next/image';
 
 import mug from '/public/static/mug.png';
+import { useTrackLocation } from '@/src/hooks';
 
 function Banner() {
+  const { handleTrackLocation, statusMsg, latLong, isLoading } =
+    useTrackLocation();
+
   const handleClickBanner = () => {
-    console.log('handleClickBanner');
+    handleTrackLocation();
   };
 
   return (
@@ -21,8 +25,9 @@ function Banner() {
         <button
           onClick={handleClickBanner}
           className='p-4 bg-primary rounded font-bold'>
-          Give me a Taste!
+          {isLoading ? 'Loading...' : 'View stores nearby'}
         </button>
+        <p className='mt-2 text-red-400'>{statusMsg}</p>
       </div>
       <Image
         alt='mug'

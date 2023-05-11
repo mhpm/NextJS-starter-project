@@ -1,18 +1,20 @@
 import { useRouter } from 'next/router';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { IStore } from '@/src/interfaces';
+import { fetchCoffeeStore } from '@/src/lib/coffee-store';
 import Image from 'next/image';
 import Link from 'next/link';
 import Head from 'next/head';
-import { fetchCoffeeStore } from '@/src/lib/coffee-store';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import mug from '@/public/static/mug.png';
 
 export const getStaticProps: GetStaticProps = async (staticProps: any) => {
   const params = staticProps.params;
   const coffeeStoreData = await fetchCoffeeStore();
+  const coffeeStore = coffeeStoreData?.find((store) => store.id == params.id);
 
   return {
     props: {
-      coffeeStore: coffeeStoreData?.find((store) => store.id == params.id),
+      coffeeStore: coffeeStore ? coffeeStore : { title: 'No Store Found' },
     },
   };
 };
@@ -52,10 +54,12 @@ const CoffeeStore = ({ coffeeStore }: { coffeeStore: IStore }) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <h1 className='text-xl mb-3'>{title}</h1>
+      <h1 className='text-3xl mb-3'>
+        <span className='text-primary'>{title}</span>
+      </h1>
       <div className='w-full flex justify-center items-center my-10 flex-col text-center'>
         <Image
-          src={image || ''}
+          src={image || mug}
           width={400}
           height={400}
           alt='image'
