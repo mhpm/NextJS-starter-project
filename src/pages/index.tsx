@@ -24,7 +24,7 @@ export default function Home(props: any) {
   return (
     <>
       <main>
-        <div className='flex min-h-screen flex-col items-center justify-center p-24'>
+        <div className='flex min-h-screen flex-col items-center justify-center p-12 sm:p-24'>
           <Banner />
           <div className='w-full xl:w-2/3 mt-20'>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10'>

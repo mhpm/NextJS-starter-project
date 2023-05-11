@@ -13,8 +13,8 @@ function Banner() {
   };
 
   return (
-    <div className='flex justify-between gap-10 relative'>
-      <div>
+    <div className='grid grid-cols-1 sm:grid-cols-6 justify-between gap-10 relative'>
+      <div className='col-span-6 md:col-span-4'>
         <h1 className='text-5xl mb-4 font-bold'>
           Best Coffee in <span className='text-primary'>Pitt!</span>
         </h1>
@@ -29,12 +29,14 @@ function Banner() {
         </button>
         <p className='mt-2 text-red-400'>{statusMsg}</p>
       </div>
-      <Image
-        alt='mug'
-        src={mug}
-        width={200}
-        height={400}
-        className='object-scale-down'></Image>
+      <div className='col-span-2 md:block hidden'>
+        <Image
+          alt='mug'
+          src={mug}
+          width={200}
+          height={400}
+          className='object-scale-down'></Image>
+      </div>
     </div>
   );
 }
