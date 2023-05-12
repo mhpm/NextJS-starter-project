@@ -9,7 +9,7 @@ export default function ListStoreContainer({ data }: { data: IStore[] }) {
           key={store.id}
           id={store.id}
           title={store.title}
-          image={store.image}
+          imageUrl={store.imageUrl}
           description={store.description}
           color={store.color}
         />

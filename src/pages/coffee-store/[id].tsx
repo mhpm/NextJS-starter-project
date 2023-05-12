@@ -47,7 +47,7 @@ const CoffeeStore = ({ coffeeStore }: { coffeeStore: IStore }) => {
     );
   }
 
-  const { title, image, id, description } = coffeeStore;
+  const { title, imageUrl, id, description } = coffeeStore;
 
   return (
     <div className='w-fill p-10 text-center font-bold'>
@@ -59,7 +59,7 @@ const CoffeeStore = ({ coffeeStore }: { coffeeStore: IStore }) => {
       </h1>
       <div className='w-full flex justify-center items-center my-10 flex-col text-center'>
         <Image
-          src={image || mug}
+          src={imageUrl || mug}
           width={400}
           height={400}
           alt='image'

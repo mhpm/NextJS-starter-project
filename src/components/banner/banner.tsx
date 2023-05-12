@@ -4,12 +4,12 @@ import Image from 'next/image';
 import mug from '/public/static/mug.png';
 import { useTrackLocation } from '@/src/hooks';
 
-function Banner() {
-  const { handleTrackLocation, statusMsg, latLong, isLoading } =
-    useTrackLocation();
+function Banner({ onClickButton }: { onClickButton: () => void }) {
+  const { handleTrackLocation, statusMsg, isLoading } = useTrackLocation();
 
   const handleClickBanner = () => {
     handleTrackLocation();
+    onClickButton();
   };
 
   return (

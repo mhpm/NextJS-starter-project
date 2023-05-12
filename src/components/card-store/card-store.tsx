@@ -4,7 +4,7 @@ import { IStore } from '@/src/interfaces';
 import styles from './card-store.module.css';
 import { useState } from 'react';
 
-const CardStore = ({ id, title, image, description, color }: IStore) => {
+const CardStore = ({ id, title, imageUrl, description, color }: IStore) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const imageLoaded = () => {
@@ -21,9 +21,10 @@ const CardStore = ({ id, title, image, description, color }: IStore) => {
         </div>
       )}
       <Image
+        priority
         quality={50}
         alt='coffee'
-        src={image}
+        src={imageUrl}
         width={400}
         height={400}
         className='object-cover h-full w-full'
