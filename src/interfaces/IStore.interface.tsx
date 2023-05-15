@@ -5,8 +5,7 @@ interface IStore {
   title: string;
   imageUrl: string;
   description?: string;
-  color?: string;
-  voting?: number;
+  likes: number;
 }
 
 export default IStore;

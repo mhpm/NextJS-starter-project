@@ -1,44 +1,43 @@
+import { IStore } from '@/src/interfaces';
+import { table, getRecordByFilter, FiltersType } from '@/src/lib/airtable';
 import { NextApiRequest, NextApiResponse } from 'next';
-
-var Airtable = require('airtable');
-var base = new Airtable({
-  apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN,
-}).base(process.env.NEXT_PUBLIC_AIRTABLE_BASE_KEY);
-
-const table = base('coffee-stores');
 
 const createCoffeeStore = async (
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) => {
-  table
-    .select({
-      // Selecting the first 3 records in Grid view:
-      maxRecords: 3,
-      view: 'Grid view',
-    })
-    .eachPage(
-      function page(records: any, fetchNextPage: any) {
-        // This function (`page`) will get called for each page of records.
+  if (req.method === 'POST') {
+    const { id, title, description, imageUrl, likes }: IStore = req.body;
 
-        records.forEach(function (record: any) {
-          console.log('Retrieved', record.get('id'));
-        });
+    if (id) {
+      try {
+        const record = await getRecordByFilter(FiltersType.id, id);
+        if (record.length) {
+          res.json(record);
+        } else if (title) {
+          const createdRecord = await table.create({
+            id,
+            title,
+            description,
+            likes,
+            imageUrl,
+          });
 
-        // To fetch the next page of records, call `fetchNextPage`.
-        // If there are more records, `page` will get called again.
-        // If there are no more records, `done` will get called.
-        fetchNextPage();
-      },
-      function done(err: any) {
-        if (err) {
-          console.error(err);
-          return;
+          res.json({ msg: 'Created Record: ', record: createdRecord.fields });
+        } else {
+          res.status(400);
+          res.json({ msg: 'Title is missing' });
         }
+      } catch (error) {
+        console.log('error: ', error);
+        res.status(500);
+        res.json({ msg: 'Error: ', error });
       }
-    );
-
-  res.json({ msg: 'Hello' });
+    } else {
+      res.status(400);
+      res.json({ msg: 'Id is missing' });
+    }
+  }
 };
 
 export default createCoffeeStore;
