@@ -84,7 +84,6 @@ const CoffeeStore = ({ coffeeStore }: { coffeeStore: IStore }) => {
 
   useEffect(() => {
     if (data && data.length > 0) {
-      console.log('Data from swr: ', data);
       setStore(data[0]);
     }
   }, [data]);

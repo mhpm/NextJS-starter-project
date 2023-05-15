@@ -17,8 +17,6 @@ const useTrackLocation = () => {
       payload: { latLong: `${latitude}, ${longitude}` },
     });
 
-    console.log(`${latitude}, ${longitude}`);
-
     setLatLong(`${latitude}, ${longitude}`);
     setStatusMsg('');
     setIsLoading(false);
