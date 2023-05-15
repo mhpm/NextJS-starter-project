@@ -20,11 +20,13 @@ const CardStore = ({ id, imageUrl, children }: ICard) => {
   );
 };
 
-CardStore.Content = ({ children }: { children: ReactNode }) => (
-  <div className='text-sm bg-stone-800 opacity-0 hover:opacity-70 h-full w-full absolute z-10 top-0 transition ease-in items-center justify-center flex flex-col p-10'>
-    {children}
-  </div>
-);
+CardStore.Content = function Content({ children }: { children: ReactNode }) {
+  return (
+    <div className='text-sm bg-stone-800 opacity-0 hover:opacity-70 h-full w-full absolute z-10 top-0 transition ease-in items-center justify-center flex flex-col p-10'>
+      {children}
+    </div>
+  );
+};
 
 const Background = ({ imageUrl }: { imageUrl: string }) => {
   const [isLoading, setIsLoading] = useState(true);
