@@ -2,10 +2,10 @@ import { StaticImageData } from 'next/image';
 
 interface IStore {
   id: number;
-  title: string;
+  title?: string;
   imageUrl: string;
   description?: string;
-  likes: number;
+  likes?: number;
 }
 
 export default IStore;

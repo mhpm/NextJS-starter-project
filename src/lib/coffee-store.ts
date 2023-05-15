@@ -9,7 +9,7 @@ const getListOfCoffeeStoresPhotos = async () => {
   const photos = await unsplash.search.getPhotos({
     query: 'coffee shop',
     page: 1,
-    perPage: 20,
+    perPage: 100,
   });
 
   const stores = photos.response?.results.map((result) => {
@@ -17,7 +17,7 @@ const getListOfCoffeeStoresPhotos = async () => {
       id: result.id,
       title: result.user.username,
       description: result.user.location,
-      imageUrl: result.urls.small,
+      imageUrl: result.urls.regular,
       likes: result.likes,
     };
   });

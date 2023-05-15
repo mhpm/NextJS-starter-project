@@ -9,6 +9,7 @@ import Head from 'next/head';
 import mug from '@/public/static/mug.png';
 import likeIcon from '@/public/static/icons/like.svg';
 import useSWR from 'swr';
+import { CardStore } from '@/src/components';
 
 export const getStaticProps: GetStaticProps = async (staticProps: any) => {
   const params = staticProps.params;
@@ -112,22 +113,21 @@ const CoffeeStore = ({ coffeeStore }: { coffeeStore: IStore }) => {
           <Head>
             <title>{store.title}</title>
           </Head>
-          <Title title={store.title} />
+          <Title title={store.title || ''} />
           <div className='w-full flex justify-center items-center my-10 flex-col text-center'>
-            <Image
-              src={store.imageUrl || mug}
-              width={400}
-              height={400}
-              alt='image'
-              className='rounded-lg'
-            />
-            {store.id && (
-              <Body
-                description={store.description || ''}
-                like={store.likes}
-                handleIconClick={handleLikeUp}
-              />
-            )}
+            <CardStore
+              id={store.id}
+              imageUrl={store.imageUrl}
+              description={store.description}
+              likes={store.likes}>
+              <CardStore.Content>
+                <LikeControl
+                  like={store.likes || 0}
+                  handleIconClick={handleLikeUp}
+                />
+              </CardStore.Content>
+            </CardStore>
+            <p className='sm:w-1/2 w-full  p-4'>{store.description}</p>
           </div>
         </>
       )}
@@ -144,23 +144,22 @@ const Title = ({ title }: { title: string }) => (
   </h1>
 );
 
-const Body = ({
-  description,
+const LikeControl = ({
   like,
   handleIconClick,
 }: {
-  description: string;
   like: number;
   handleIconClick: () => void;
 }) => (
   <>
-    <p className='w-1/2 p-5'>{description}</p>
     <div className='font-bold text-2xl flex gap-5 align-middle items-center'>
       <span className='pt-2'>{like} </span>
-      <button onClick={handleIconClick}>
+      <button
+        className='p-4 rounded-full bg-stone-200 hover:bg-stone-50'
+        onClick={handleIconClick}>
         <Image
           alt='like'
-          className='hover:brightness-150'
+          className=''
           width={40}
           height={40}
           src={likeIcon}></Image>
