@@ -40,19 +40,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const CoffeeStore = ({ coffeeStore }: { coffeeStore: IStore }) => {
+  const [store, setStore] = useState<IStore>(coffeeStore);
   const router = useRouter();
 
-  if (router.isFallback) {
-    return (
-      <div className='h-screen w-screen flex justify-center items-center animate-ping'>
-        <h3> Loading ...</h3>
-      </div>
-    );
-  }
-
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-  const [store, setStore] = useState<IStore>(coffeeStore);
 
   const { data, error, isLoading } = useSWR(
     `/api/coffee-stores/getById?id=${coffeeStore?.id}`,
@@ -99,14 +90,20 @@ const CoffeeStore = ({ coffeeStore }: { coffeeStore: IStore }) => {
           body: JSON.stringify({
             ...store,
           }),
-        })
-          .then((response: Response) => response.json())
-          .then((data) => console.log(data));
+        }).then((response: Response) => response.json());
       } catch (error) {
         console.log('error creating record: ', error);
       }
     }
   }, [coffeeStore]);
+
+  if (router.isFallback) {
+    return (
+      <div className='h-screen w-screen flex justify-center items-center animate-ping'>
+        <h3> Loading ...</h3>
+      </div>
+    );
+  }
 
   return (
     <div className='w-fill p-10 text-center font-bold'>

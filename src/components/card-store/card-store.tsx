@@ -4,7 +4,7 @@ import { IStore } from '@/src/interfaces';
 import styles from './card-store.module.css';
 import { useState } from 'react';
 
-const CardStore = ({ id, title, imageUrl, description, color }: IStore) => {
+const CardStore = ({ id, title, imageUrl, description }: IStore) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const imageLoaded = () => {
@@ -12,9 +12,7 @@ const CardStore = ({ id, title, imageUrl, description, color }: IStore) => {
   };
 
   return (
-    <Link
-      href={`/coffee-store/${id}`}
-      className={[styles.card, `outline-[${color}]`].join(' ')}>
+    <Link href={`/coffee-store/${id}`} className={styles.card}>
       {isLoading && (
         <div className='absolute animate-pulse w-full h-full flex items-center justify-center text-sm'>
           Image Loading...

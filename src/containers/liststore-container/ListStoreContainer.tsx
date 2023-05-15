@@ -11,7 +11,7 @@ export default function ListStoreContainer({ data }: { data: IStore[] }) {
           title={store.title}
           imageUrl={store.imageUrl}
           description={store.description}
-          color={store.color}
+          likes={store.likes}
         />
       ))}
     </>
