@@ -8,6 +8,7 @@ import { fetchCoffeeStore } from '@/src/lib/coffee-store';
 import { useContext } from 'react';
 import { CoffeeStoreContext } from '../context/coffee-store/coffeeStore.context';
 import { CoffeeStoreActions } from '../context/coffee-store/coffeeStore.interfaces';
+import Head from 'next/head';
 
 // only runs on server side rendering
 export async function getStaticProps(context: any) {
@@ -44,6 +45,9 @@ export default function Home(props: any) {
 
   return (
     <>
+      <Head>
+        <title>Coffee Stores</title>
+      </Head>
       <main>
         <div className='flex min-h-screen flex-col items-center justify-center p-12 sm:p-24'>
           <Banner onClickButton={getNearestStores} />

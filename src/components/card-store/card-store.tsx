@@ -7,13 +7,16 @@ import styled from '@emotion/styled';
 
 interface ICard extends IStore {
   children?: ReactNode;
+  className?: string;
 }
 
 const Container = styled(Link)``;
 
-const CardStore = ({ id, imageUrl, children }: ICard) => {
+const CardStore = ({ id, imageUrl, className, children }: ICard) => {
   return (
-    <Container href={`/coffee-store/${id}`} className={styles.card}>
+    <Container
+      href={`/coffee-store/${id}`}
+      className={[styles.card, className].join(' ')}>
       <Background imageUrl={imageUrl}></Background>
       {children}
     </Container>
