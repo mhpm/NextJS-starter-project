@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,7 +35,15 @@ body {
 }
 
 .bg-primary {
-  @apply bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-500;
+  @apply bg-gradient-to-r from-amber-500 to-orange-500 active:from-amber-400 active:to-orange-400 disabled:opacity-60;
+}
+
+.bg-secondary {
+  @apply bg-gradient-to-r from-neutral-500 to-zinc-500 active:from-neutral-400 active:to-zinc-400 disabled:opacity-60;
+}
+
+.disable {
+  @apply opacity-60;
 }
 
 .text-primary {

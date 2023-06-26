@@ -6,7 +6,6 @@ import { fetchCoffeeStore } from '@/src/lib/coffee-store';
 import Image from 'next/image';
 import Link from 'next/link';
 import Head from 'next/head';
-import mug from '@/public/static/mug.png';
 import likeIcon from '@/public/static/icons/like.svg';
 import useSWR from 'swr';
 import { CardStore } from '@/src/components';
@@ -100,26 +99,27 @@ const CoffeeStore = ({ coffeeStore }: { coffeeStore: IStore }) => {
 
   if (router.isFallback) {
     return (
-      <div className='h-screen w-screen flex justify-center items-center animate-ping'>
+      <div className="h-screen w-screen flex justify-center items-center animate-ping">
         <h3> Loading ...</h3>
       </div>
     );
   }
 
   return (
-    <div className='w-fill p-10 text-center font-bold'>
+    <div className="w-fill p-10 text-center font-bold">
       {store?.id && (
         <>
           <Head>
             <title>{store.title}</title>
           </Head>
           <Title title={store.title || ''} />
-          <div className='w-full flex justify-center items-center my-10 flex-col text-center'>
+          <div className="w-full flex justify-center items-center my-10 flex-col text-center">
             <CardStore
               id={store.id}
               imageUrl={store.imageUrl}
               description={store.description}
-              likes={store.likes}>
+              likes={store.likes}
+            >
               <CardStore.Content>
                 <LikeControl
                   like={store.likes || 0}
@@ -127,11 +127,11 @@ const CoffeeStore = ({ coffeeStore }: { coffeeStore: IStore }) => {
                 />
               </CardStore.Content>
             </CardStore>
-            <p className='sm:w-1/2 w-full  p-4'>{store.description}</p>
+            <p className="sm:w-1/2 w-full  p-4">{store.description}</p>
           </div>
         </>
       )}
-      <Link className='bg-primary rounded-full p-3 px-10' href={'/'}>
+      <Link className="bg-primary rounded-full p-3 px-10" href={'/'}>
         Back
       </Link>
     </div>
@@ -139,8 +139,8 @@ const CoffeeStore = ({ coffeeStore }: { coffeeStore: IStore }) => {
 };
 
 const Title = ({ title }: { title: string }) => (
-  <h1 className='text-3xl mb-3'>
-    <span className='text-primary'>{title}</span>
+  <h1 className="text-3xl mb-3">
+    <span className="text-primary">{title}</span>
   </h1>
 );
 
@@ -152,17 +152,19 @@ const LikeControl = ({
   handleIconClick: () => void;
 }) => (
   <>
-    <div className='font-bold text-2xl flex gap-5 align-middle items-center'>
-      <span className='pt-2'>{like} </span>
+    <div className="font-bold text-2xl flex gap-5 align-middle items-center">
+      <span className="pt-2">{like} </span>
       <button
-        className='p-4 rounded-full bg-stone-200 hover:bg-stone-50'
-        onClick={handleIconClick}>
+        className="p-4 rounded-full bg-stone-200 hover:bg-stone-50"
+        onClick={handleIconClick}
+      >
         <Image
-          alt='like'
-          className=''
+          alt="like"
+          className=""
           width={40}
           height={40}
-          src={likeIcon}></Image>
+          src={likeIcon}
+        ></Image>
       </button>
     </div>
   </>
