@@ -1,6 +1,6 @@
 import { useMemo, ComponentPropsWithoutRef } from 'react';
 
-interface ButtonProps {
+type ButtonProps = {
   /**
    * variation of button'style
    */
@@ -12,7 +12,7 @@ interface ButtonProps {
   /**
    * Button contents
    */
-  label: string;
+  label?: string;
   /**
    * Button loading
    */
@@ -26,10 +26,14 @@ interface ButtonProps {
    */
   className?: string;
   /**
-   * Optional click handler
+   * Button children content
+   */
+  children?: React.ReactNode;
+  /**
+   * Button click handler
    */
   onClick?: () => void;
-}
+} & ComponentPropsWithoutRef<'button'>;
 
 const sizes: any = {
   small: 'px-4 py-1 text-sm',
@@ -38,8 +42,8 @@ const sizes: any = {
 };
 
 const variations: any = {
-  primary: 'bg-primary',
-  secondary: 'bg-secondary',
+  primary: 'bg-primary active:bg-primary/80',
+  secondary: 'bg-secondary active:bg-secondary/70',
 };
 
 /**
@@ -52,7 +56,11 @@ const Button = ({
   loading = false,
   disable = false,
   className = '',
+  children,
+  onClick,
 }: ButtonProps): JSX.Element => {
+  console.log('Button');
+
   const computedClasses = useMemo(() => {
     const variationClass = variations[variation];
     const sizeClass = sizes[size];
@@ -64,9 +72,10 @@ const Button = ({
     <button
       disabled={disable || loading}
       type="button"
-      className={`rounded-md ${computedClasses} ${className}`}
+      className={`rounded-md border-none ${computedClasses} ${className}`}
+      onClick={onClick}
     >
-      {loading ? 'loading...' : label}
+      {loading ? 'loading...' : label ? label : children}
     </button>
   );
 };

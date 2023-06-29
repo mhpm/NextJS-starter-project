@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 import { getPerson } from './getPerson';
 import { ResetButton } from './ResetButton';
 import { Loading } from '@/src/components';
+import Button from '@/src/components/button/button';
 
 function sillyExpensiveFunction() {
   console.log('Executing silly function');
@@ -54,7 +55,6 @@ const Scores = () => {
     score: 0,
     loading: true,
   });
-  const addButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     getPerson().then(({ name }) => {
@@ -62,14 +62,8 @@ const Scores = () => {
     });
   }, []);
 
-  useEffect(() => {
-    if (!loading) {
-      addButtonRef.current?.focus();
-    }
-  }, [loading]);
-
   // useMemo helps improve the performance of function calls by memoizing their results and using the memoized value when the function is re-executed
-  const expensiveCalculation = useMemo(() => sillyExpensiveFunction(), []);
+  // const expensiveCalculation = useMemo(() => sillyExpensiveFunction(), []);
 
   const handleReset = useCallback(() => dispatch({ type: 'reset' }), []);
 
@@ -81,21 +75,20 @@ const Scores = () => {
         <h3 className="text-center mb-7 text-xl">
           {name}: {score}
         </h3>
-        <p>{expensiveCalculation}</p>
-        <button
-          ref={addButtonRef}
-          onClick={() => dispatch({ type: 'increment' })}
-          className="bg-teal-500 focus:bg-teal-400 px-5 py-2 rounded mr-2 font-bold"
-        >
+        {/* <p>{expensiveCalculation}</p> */}
+        <Button size="large" onClick={() => dispatch({ type: 'increment' })}>
           +
-        </button>
-        <button
-          onClick={() => dispatch({ type: 'decrement' })}
-          className="bg-teal-500 px-5 py-2 rounded mr-2 font-bold"
+        </Button>
+        <Button
+          size="small"
+          onClick={() => {
+            if (score > 0) dispatch({ type: 'decrement' });
+          }}
+          className="mx-3"
         >
           -
-        </button>
-        <ResetButton onClick={handleReset} />
+        </Button>
+        <Button variation="secondary" label="Reset" onClick={handleReset} />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { Banner } from '@/src/components';
+import { Banner, FlyOut } from '@/src/components';
 import { ListStoreContainer } from '@/src/containers';
 
 // https://jsonplaceholder.typicode.com/photos
@@ -49,19 +49,20 @@ export default function Home(props: any) {
         <title>Coffee Stores</title>
       </Head>
       <main>
-        <div className='flex min-h-screen flex-col items-center justify-center p-12 sm:p-24'>
+        <FlyOut isOpen={true} />
+        <div className="flex min-h-screen flex-col items-center justify-center p-12 sm:p-24">
           <Banner onClickButton={getNearestStores} />
           {coffeeStores.length > 0 && (
-            <div className='w-full xl:w-2/3 mt-10'>
-              <h2 className='font-bold text-xl pb-5'>Nearest Coffee Stores</h2>
-              <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10'>
+            <div className="w-full xl:w-2/3 mt-10">
+              <h2 className="font-bold text-xl pb-5">Nearest Coffee Stores</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10">
                 <ListStoreContainer data={coffeeStores} />
               </div>
             </div>
           )}
-          <div className='w-full xl:w-2/3 mt-20'>
-            <h2 className='font-bold text-xl pb-5'>Pittsburgh Coffee Stores</h2>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10'>
+          <div className="w-full xl:w-2/3 mt-20">
+            <h2 className="font-bold text-xl pb-5">Pittsburgh Coffee Stores</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10">
               <ListStoreContainer data={props.data} />
             </div>
           </div>

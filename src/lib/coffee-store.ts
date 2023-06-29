@@ -1,8 +1,9 @@
 import { createApi } from 'unsplash-js';
-import { faker } from '@faker-js/faker';
 
 const unsplash = createApi({
-  accessKey: process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY || '',
+  accessKey:
+    process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY ||
+    'xKATI7kvVcblGDj7wyZEYwBQDllHmHRWO8QAC3WSqLQ',
 });
 
 const getListOfCoffeeStoresPhotos = async () => {

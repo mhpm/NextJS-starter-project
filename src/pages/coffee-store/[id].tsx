@@ -119,6 +119,7 @@ const CoffeeStore = ({ coffeeStore }: { coffeeStore: IStore }) => {
               imageUrl={store.imageUrl}
               description={store.description}
               likes={store.likes}
+              className="!h-[600px]"
             >
               <CardStore.Content>
                 <LikeControl

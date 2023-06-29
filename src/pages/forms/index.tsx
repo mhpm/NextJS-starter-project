@@ -1,5 +1,6 @@
 import { FormEvent } from 'react';
-import { Form, ActionFunctionArgs, redirect } from 'react-router-dom';
+import { ActionFunctionArgs } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 type Contact = {
   name: string;
@@ -18,24 +19,25 @@ export async function contactPageAction({ request }: ActionFunctionArgs) {
   } as Contact;
 
   console.log('Submitted details:', contact);
-
-  return redirect(`/thank-you/${formData.get('name')}`);
 }
 
 const Forms = (props: Contact) => {
-  // function handleSubmit(e: FormEvent<HTMLFormElement>) {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.currentTarget);
+  const router = useRouter();
 
-  //   const contact = {
-  //     name: formData.get('name'),
-  //     email: formData.get('email'),
-  //     reason: formData.get('reason'),
-  //     notes: formData.get('notes'),
-  //   } as Contact;
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
 
-  //   console.log('Submitted details:', contact);
-  // }
+    const contact = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      reason: formData.get('reason'),
+      notes: formData.get('notes'),
+    } as Contact;
+
+    console.log('Submitted details:', contact);
+    router.push(`/thankyou/${formData.get('name')}`);
+  }
 
   return (
     <div className="flex flex-col py-10 max-w-md mx-auto">
@@ -43,7 +45,7 @@ const Forms = (props: Contact) => {
       <p className="mb-3">
         If you enter your details we'll get back to you as soon as we can.
       </p>
-      <Form method="post">
+      <form onSubmit={handleSubmit}>
         <div className="flex flex-col mb-5">
           <label htmlFor="name">Your name</label>
           <input
@@ -51,6 +53,8 @@ const Forms = (props: Contact) => {
             id="name"
             className="rounded text-stone-700"
             name="name"
+            pattern="[a-z0-9]{1,15}"
+            title="Password should be digits (0 to 9) or alphabets (a to z)."
           />
         </div>
         <div className="flex flex-col mb-5">
@@ -58,8 +62,10 @@ const Forms = (props: Contact) => {
           <input
             type="email"
             id="email"
-            className="rounded text-stone-700"
             name="email"
+            className="rounded text-stone-700"
+            pattern="\S+@\S+\.\S+"
+            required
           />
         </div>
         <div className="flex flex-col mb-5">
@@ -87,7 +93,7 @@ const Forms = (props: Contact) => {
             Submit
           </button>
         </div>
-      </Form>
+      </form>
     </div>
   );
 };

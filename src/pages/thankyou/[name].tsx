@@ -1,7 +1,8 @@
-import { useParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 export default function ThankYouPage() {
-  const { name } = useParams<{ name: string }>();
+  const router = useRouter();
+  console.log('router: ', router);
 
   return (
     <div className="flex flex-col py-10 max-w-md mx-auto">
@@ -9,7 +10,7 @@ export default function ThankYouPage() {
         role="alert"
         className="bg-green-100 py-5 px-6 text-base text-green-700 rounded"
       >
-        Thanks {name}, we will be in touch shortly
+        Thanks {router.query?.name}, we will be in touch shortly
       </div>
     </div>
   );

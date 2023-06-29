@@ -1,5 +1,5 @@
 .card {
-  @apply overflow-hidden outline outline-4 relative ease-in hover:rotate-3 duration-300 hover:brightness-125 bg-stone-700 text-center rounded cursor-pointer hover:bg-amber-700;
+  @apply h-[400px] overflow-hidden outline outline-4 relative ease-in hover:rotate-3 duration-300 hover:brightness-125 bg-stone-700 text-center rounded cursor-pointer hover:bg-amber-700;
 }
 
 .loading {

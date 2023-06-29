@@ -1,8 +1,8 @@
 type Props = {
-  isLoading?: boolean;
+  isOpen?: boolean;
 };
 
-const Loading = ({ isLoading = true }: Props) =>
-  isLoading ? <div>Loading...</div> : null;
+const Loading = ({ isOpen = true }: Props) =>
+  isOpen ? <div>Loading...</div> : <></>;
 
 export default Loading;

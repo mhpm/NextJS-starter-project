@@ -1,7 +1,8 @@
-var Airtable = require('airtable');
+const Airtable = require('airtable');
 
 export const base = new Airtable({
-  apiKey: process.env.NEXT_PUBLIC_AIRTABLE_API_KEY,
+  apiKey:
+    'pat3qaUUDIlhLJvVs.eeb569684eff9b0bc82cc761b71135bd5207cdda54d9b87c07ceba494da8338e',
 }).base('appsxnnNPcz2bbWMB');
 
 export const table = base('coffee-stores');
