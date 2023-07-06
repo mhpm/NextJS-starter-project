@@ -58,9 +58,7 @@ const Button = ({
   className = '',
   children,
   onClick,
-}: ButtonProps): JSX.Element => {
-  console.log('Button');
-
+}: ButtonProps) => {
   const computedClasses = useMemo(() => {
     const variationClass = variations[variation];
     const sizeClass = sizes[size];
@@ -72,7 +70,7 @@ const Button = ({
     <button
       disabled={disable || loading}
       type="button"
-      className={`rounded-md border-none ${computedClasses} ${className}`}
+      className={`rounded-full border-none ${computedClasses} ${className}`}
       onClick={onClick}
     >
       {loading ? 'loading...' : label ? label : children}
