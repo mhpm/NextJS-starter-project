@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import IdValue from './types';
+
+type IdValue = string | number;
 
 type Params = {
   checkedIds?: IdValue[];
   onCheckedIdsChange?: (checkedIds: IdValue[]) => void;
 };
 
-export function useChecked({ checkedIds, onCheckedIdsChange }: Params) {
+export default function useChecked({ checkedIds, onCheckedIdsChange }: Params) {
   const [resolvedCheckedIds, setResolvedCheckedIds] = useState<IdValue[]>(
     checkedIds || []
   );

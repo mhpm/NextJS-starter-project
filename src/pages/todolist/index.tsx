@@ -1,7 +1,8 @@
 import { ReactNode, useState } from 'react';
 import { ComponentPropsWithoutRef } from 'react';
-import { useChecked } from './useChecked';
-import IdValue from './types';
+import useChecked from './useChecked';
+
+type IdValue = string | number;
 
 // props spreading pattern
 
