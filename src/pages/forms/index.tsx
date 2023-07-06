@@ -43,7 +43,7 @@ const Forms = (props: Contact) => {
     <div className="flex flex-col py-10 max-w-md mx-auto">
       <h2 className="text-3xl font-bold underline mb-3">Contact Us</h2>
       <p className="mb-3">
-        If you enter your details we'll get back to you as soon as we can.
+        If you enter your details we ll get back to you as soon as we can.
       </p>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col mb-5">

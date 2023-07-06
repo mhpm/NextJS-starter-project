@@ -41,7 +41,7 @@ export default function Home(props: any) {
         },
       });
     } catch (error) {
-      console.log('error: ', stores);
+      console.log('error: ', error);
     }
   };
 
