@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react';
-import getPerson from './getPerson';
+import getPerson from '@/src/lib/getPerson';
 import { Loading } from '@/src/components';
 import Button from '@/src/components/button/button';
 

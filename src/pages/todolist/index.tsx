@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
 import { ComponentPropsWithoutRef } from 'react';
-import useChecked from './useChecked';
+import useChecked from '@/src/hooks/useChecked';
 
 type IdValue = string | number;
 
