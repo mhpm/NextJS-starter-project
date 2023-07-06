@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import Image from 'next/image';
 
 import Modal from './modal';
 import Button from '../button/button';
@@ -64,7 +65,9 @@ export const custom: Story = {
     title: 'Image Preview',
     content: (
       <div>
-        <img
+        <Image
+          width={300}
+          height={300}
           src="https://images.unsplash.com/photo-1506729623306-b5a934d88b53?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
           alt=""
         />

@@ -1,1 +1,3 @@
-export type IdValue = string | number;
+type IdValue = string | number;
+
+export default IdValue;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { IdValue } from './types';
+import IdValue from './types';
 
 type Params = {
   checkedIds?: IdValue[];

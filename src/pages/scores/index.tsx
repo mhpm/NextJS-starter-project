@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
-import { getPerson } from './getPerson';
-import { ResetButton } from './ResetButton';
+import { useCallback, useEffect, useReducer, useRef } from 'react';
+import getPerson from './getPerson';
 import { Loading } from '@/src/components';
 import Button from '@/src/components/button/button';
 
